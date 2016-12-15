@@ -1,0 +1,28 @@
+{
+  "extends": "airbnb",
+  "ecmaFeatures": {
+    "globalReturn": true
+  },
+  "rules": {
+    "max-len": [ 
+      "warn",
+      { 
+        "code": 200,
+        "tabWidth": 2
+      }
+    ],
+    "no-console": "off",
+    "arrow-body-style": "off",
+    "no-use-before-define": "off",
+    "class-methods-use-this": "off",
+    "import/no-extraneous-dependencies": "off",
+    "camelcase": "off",
+    "import/prefer-default-export": "off",
+  },
+  "globals": {},
+  "env": {
+    "browser": true,
+    "node": true,
+    "mocha": true
+  }
+}
