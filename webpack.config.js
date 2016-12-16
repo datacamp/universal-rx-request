@@ -1,9 +1,9 @@
 module.exports = {
-  entry: './index.js',
+  entry: './src/index.js',
   target: 'node',
   output: {
-    path: './dist',
-    filename: 'build.js',
+    path: './lib',
+    filename: 'index.js',
     libraryTarget: 'umd',
   },
   externals: [/^rxjs.*/, 'superagent'],
