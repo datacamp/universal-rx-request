@@ -8,7 +8,8 @@
     "lint": "eslint src/*.js",
     "coverage": "babel-node node_modules/.bin/babel-istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec",
     "start": "webpack -w",
-    "build": "npm run lint && npm run test && webpack -p"
+    "build": "npm run lint && npm run test && webpack -p",
+    "prepublish": "npm run build"
   },
   "author": "",
   "license": "MIT",

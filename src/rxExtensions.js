@@ -46,7 +46,7 @@ export default () => {
   Observable.prototype.concatMapOnSucceedRequest = function (cb) {
     return this.concatMap((action) => {
       if (isSuccess(action)) {
-        cb(action);
+        return cb(action);
       }
       return Observable.of(action);
     });
