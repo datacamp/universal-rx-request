@@ -37,12 +37,11 @@ export default () => {
   Observable.prototype.flatMapOnSucceedRequest = Observable.prototype.mergeMapOnSucceedRequest;
 
   Observable.prototype.concatMapOnSucceedRequest = function (cb) {
-    return this.mergeMap((action) => {
-      let obs = Observable.of(action);
+    return this.concatMap((action) => {
       if (isSuccess(action)) {
-        obs = obs.concat(cb(action));
+        cb(action);
       }
-      return obs;
+      return Observable.of(action);
     });
   };
 

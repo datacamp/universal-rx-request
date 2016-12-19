@@ -4,6 +4,7 @@ module.exports = {
   output: {
     path: './lib',
     filename: 'index.js',
+    library: 'rxRequest',
     libraryTarget: 'umd',
   },
   externals: [/^rxjs.*/, 'superagent'],
