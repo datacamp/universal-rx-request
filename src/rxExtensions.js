@@ -17,7 +17,7 @@ export const STATUS = {
 export const getStatus = (type, status) => `${type}_${status}`;
 
 export default () => {
-  Observable.prototype.actionRequest = function (action) {
+  Observable.prototype.mapToAction = function (action) {
     return Observable.of({ type: getStatus(action.type, STATUS.FETCHING), requestStatus: STATUS.FETCHING })
       .concat(
         this.map(data => ({ type: getStatus(action.type, STATUS.SUCCESS), requestStatus: STATUS.SUCCESS, data }))
