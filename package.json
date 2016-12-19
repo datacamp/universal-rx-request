@@ -2,7 +2,7 @@
   "name": "universal-rx-request",
   "version": "1.0.0",
   "description": "Library that allow to do HTTP requests with RxJS",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "test": "mocha --compilers js:babel-core/register",
     "lint": "eslint src/*.js",
