@@ -19,8 +19,8 @@ export default ({ url, method = 'get', options = {}, query = {}, data = {} }) =>
 
     if (isArray(options.auth)) request = request.auth(...options.auth);
     if (isArray(options.redirects)) request = request.redirects(options.redirects);
-    if (isArray(options.attaches)) request = options.attaches.filter(isArray).map(attach => request.attach(...attach));
-    if (isArray(options.fields)) request = options.fields.filter(isArray).map(field => request.field(...field));
+    if (isArray(options.attaches)) request = options.attaches.filter(isArray).reduce((acc, attach) => acc.attach(...attach), request);
+    if (isArray(options.fields)) request = options.fields.filter(isArray).reduce((acc, field) => request.field(...field), request);
 
     request.end((error, response) => {
       if (error) {

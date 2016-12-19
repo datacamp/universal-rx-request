@@ -4,6 +4,7 @@ import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/concat';
+import 'rxjs/add/operator/catch';
 
 const isSuccess = action => action && action.requestStatus === STATUS.SUCCESS;
 const isError = action => action && action.requestStatus === STATUS.ERROR;
