@@ -2,6 +2,7 @@
   "name": "universal-rx-request",
   "version": "1.0.0",
   "description": "Library that allow to do HTTP requests with RxJS",
+  "keywords": ["rxjs", "rx", "redux-observable", "superagent", "universal", "http", "request", "fetch", "observable", "isomorphic", "redux"],
   "main": "lib/index.js",
   "scripts": {
     "test": "mocha --compilers js:babel-core/register",
@@ -11,7 +12,8 @@
     "build": "npm run lint && npm run test && webpack -p",
     "prepublish": "npm run build"
   },
-  "author": "",
+  "author": "Herve Eerebout",
+  "contributors": ["Ludovic Vannoorenberghe"],
   "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.18.0",
