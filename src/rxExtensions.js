@@ -4,10 +4,17 @@ import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/concat';
-import { STATUS, getStatus } from './rxRequest';
 
 const isSuccess = action => action && action.requestStatus === STATUS.SUCCESS;
 const isError = action => action && action.requestStatus === STATUS.ERROR;
+
+export const STATUS = {
+  FETCHING: 'fetching',
+  SUCCESS: 'success',
+  ERROR: 'error',
+};
+
+export const getStatus = (type, status) => `${type}_${status}`;
 
 export default () => {
   Observable.prototype.actionRequest = function (action) {

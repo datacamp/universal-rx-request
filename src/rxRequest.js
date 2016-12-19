@@ -6,14 +6,6 @@ import 'rxjs/add/operator/concat';
 
 const isArray = obj => obj instanceof Array;
 
-export const STATUS = {
-  FETCHING: 'fetching',
-  SUCCESS: 'success',
-  ERROR: 'error',
-};
-
-export const getStatus = (type, status) => `${type}_${status}`;
-
 export default ({ url, method = 'get', options = {}, query = {}, data = {} }) => {
   const agent = options.agent ? superagent.agent() : superagent;
   return Observable.create((subscriber) => {
