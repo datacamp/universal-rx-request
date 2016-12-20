@@ -108,3 +108,19 @@ Function that will make the HTTP request and returns an observable. Shape of the
  }
 ```
 The function will return an observable which will emit an object corresponding to the response of the HTTP request. If an error occurs, the observable will emit an error which can be catch in the observable flow. The error emitted will be an object containing the `error` and `response` field. For more details about the shapes of the error and response object, please check the superagent library.
+
+### rxRequest.STATUS
+It's an object containg all the different possible state of the HTTP request:
+```js
+{
+  FETCHING: 'fetching',
+  SUCCESS: 'success',
+  ERROR: 'error',
+}
+```
+
+### rxRequest.getStatus(action, status)
+Facility to get the type of the emitted action depending of the action object (`{ type: ... }`) and the status (rxRequest.STATUS).
+
+### rxRequest.importRxExtensions()
+Function to extend the observable with new operators described above.
