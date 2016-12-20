@@ -74,11 +74,11 @@ rxRequest({ method: 'get', url: 'https://api.ipify.org?format=json' })
 
 Once you map the request to an action with `maptoAction`, We recommand you to use the extended operators to deal with succeed or failure request. these are the extended operators which may be useful:
 - `throwErrorOnFailedRequest()`: It will throw an error if the result of the http request is an error. To handle the error, you will have to catch it in the observable flow.
-- `mergeMapOnSucceedRequest((result) => {...})`: It acts like a classic `mergeMap` in the Rx world except that it will mergeMap only on succeed request (not fetching or error status). The function given as argument has to return an observable.
+- `mergeMapOnSucceedRequest((result) => {...})`: It acts like a classic [mergeMap](http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#instance-method-mergeMap) in the Rx world except that it will mergeMap only on succeed request (not fetching or error status). The function given as argument has to return an observable.
 - `flatMapOnSucceedRequest((result) => {...})`: It's an alias for `mergeMapOnSucceedRequest`.
-- `concatMapOnSucceedRequest((result) => {...})`: It's like `mergeMapOnSucceedRequest` except that it use the `concatMap` operator.
-- `doOnSucceedRequest((result) => {...})`: It's like `mergeMapOnSucceedRequest` except that it use the `do` operator to do side effects.
-- `filterOnSucceedRequest()`: It's like `mergeMapOnSucceedRequest` except that it use the `fitler` operator.
+- `concatMapOnSucceedRequest((result) => {...})`: It's like `mergeMapOnSucceedRequest` except that it use the [concatMap](http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#instance-method-concatMap) operator.
+- `doOnSucceedRequest((result) => {...})`: It's like `mergeMapOnSucceedRequest` except that it use the [do](http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#instance-method-do) operator to do side effects.
+- `filterOnSucceedRequest()`: It's like `mergeMapOnSucceedRequest` except that it use the [filter](http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#instance-method-filter) operator.
 
 I invite you to check out the test folder which contains great example of how to use these operators correctly.
 
