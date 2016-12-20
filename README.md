@@ -94,7 +94,7 @@ Function that will make the HTTP request and returns an observable. Shape of the
   data: {},
   options: {
     only2xx: true|false,
-    agent: true|false,
+    agent: superagent.agent(),
     json: true|false,
     headers: {},
     withCredentials: true|false,
