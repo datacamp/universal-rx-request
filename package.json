@@ -1,7 +1,7 @@
 {
   "name": "universal-rx-request",
   "version": "1.0.0",
-  "description": "Library that allow to do HTTP requests with RxJS",
+  "description": "Lightweight HTTP requests library based on superagent that returns a RxJS 5 observable. This library works on browser and server side.",
   "keywords": [
     "rxjs",
     "rx",
