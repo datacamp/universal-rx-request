@@ -18,7 +18,7 @@ The library exposed a global variable called `rxRequest`. It also works with AMD
 
 ## Basic Example
 
-Just like `lodash`, the library exposes a function which make directly the HTTP request depending of the configuration you gave. The request will return an observable.
+The library exposes a function which makes directly the HTTP request depending of the configuration you give. The request will return an observable.
 ```js
 import rxRequest from 'universal-rx-request';
 
@@ -31,3 +31,42 @@ rxRequest({ method: 'get', url: 'https://wrong-api.com/notFound' })
 // print ENOTFOUND
 ```
 
+## Works great with redux and redux-observable
+
+You can import rx extensions which allow you to have more controls on the different steps that the request will going through (fetching => success|error). 
+```js
+import rxRequest from 'universal-rx-request';
+
+rxRequest.importRxExtensions(); // will add operators for the observables. You only have to do once
+
+rxRequest({ method: 'get', url: 'https://api.ipify.org?format=json' })
+  .mapToAction({ type: 'get_my_ip' })
+  .subscribe(console.log, console.error);
+// print the emitted items as a stream
+//  |--- { type: 'get_my_ip_fetching', requestStatus: 'fetching' } ------ { type: 'get_my_ip_success', requestStatus: 'success',  data: reponse } ----|
+```
+Thanks to this rx extension you will be able to handle your state after each step of the HTTP request.
+
+The rx extensions provide some other useful operators:
+```js
+import rxRequest from 'universal-rx-request';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
+
+rxRequest.importRxExtensions();
+
+rxRequest({ method: 'get', url: 'https://api.ipify.org?format=json' })
+  .mapToAction({ type: 'get_my_ip' })
+  .mergeMapOnSucceedRequest(result => Observable.of({ ip: result.data.body.ip }))
+  .subscribe(console.log, console.error);
+// print the emitted items as a stream
+//  |--- { type: 'get_my_ip_fetching', requestStatus: 'fetching' } ------ { ip: 'xxx.xxx.xxx.x' } ----|
+```
+
+Once you map the request to an action with `maptoAction`, We recommand you to use the extended operators to deal with succeed or failure request. these are the extended operators which may be useful:
+- `throwErrorOnFailedRequest`: 
+- `mergeMapOnSucceedRequest`: 
+- `flatMapOnSucceedRequest`:
+- `concatMapOnSucceedRequest`:
+- `doOnSucceedRequest`:
+- `filterOnSucceedRequest`
