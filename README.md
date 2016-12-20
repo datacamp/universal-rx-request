@@ -90,6 +90,7 @@ Function that will make the HTTP request and returns an observable. Shape of the
   query: {},
   data: {},
   options: {
+    only2xx: true|false,
     agent: true|false,
     json: true|false,
     headers: {},
@@ -106,3 +107,4 @@ Function that will make the HTTP request and returns an observable. Shape of the
   }
  }
 ```
+The function will return an observable which will emit an object corresponding to the response of the HTTP request. If an error occurs, the observable will emit an error which can be catch in the observable flow. The error emitted will be an object containing the `error` and `response` field. For more details about the shapes of the error and response object, please check the superagent library.
