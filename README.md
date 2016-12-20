@@ -16,12 +16,18 @@ To install on the browser:
 ```
 The library exposed a global variable called `rxRequest`. It also works with AMD api.
 
-## Example
+## Basic Example
 
 Just like `lodash`, the library exposes a function which make directly the HTTP request depending of the configuration you gave. The request will return an observable.
 ```js
 import rxRequest from 'universal-rx-request';
 
-rxRequest({ method: 'get', url: `https://api.ipify.org?format=json` })
+rxRequest({ method: 'get', url: 'https://api.ipify.org?format=json' })
   .subscribe(result => console.log(result.body.ip), console.error);
+// print your current ip
+
+rxRequest({ method: 'get', url: 'https://wrong-api.com/notFound' })
+  .subscribe(result => console.log, error => console.error(error.error.errno));
+// print ENOTFOUND
 ```
+
