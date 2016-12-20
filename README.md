@@ -78,3 +78,31 @@ Once you map the request to an action with `maptoAction`, We recommand you to us
 - `filterOnSucceedRequest()`: It's like `mergeMapOnSucceedRequest` except that it use the `fitler` operator.
 
 I invite you to check out the test folder which contains great example of how to use these operators correctly.
+
+## APIs
+
+### rxRequest(settings)
+Function that will make the HTTP request and returns an observable. Shape of the settings (only url and method fields are required):
+```js
+ {
+  url: 'https://...',
+  method: 'get|post|update|...',
+  query: {},
+  data: {},
+  options: {
+    agent: true|false,
+    json: true|false,
+    headers: {},
+    withCredentials: true|false,
+    responseType: 'blob|...',
+    timeout: {
+      response: 5000,
+      deadline: 60000,
+    },
+    auth: ['tobi', 'learnboost'],
+    redirects: 2,
+    attaches: [ ['file', 'test.png'], ...],
+    fields: [ ['user', 'Bob'], ...],
+  }
+ }
+```
