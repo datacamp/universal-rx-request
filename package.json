@@ -32,6 +32,10 @@
   "contributors": [
     "Ludovic Vannoorenberghe"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/datacamp/universal-rx-request.git"
+  },
   "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.18.0",
