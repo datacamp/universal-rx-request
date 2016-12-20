@@ -52,7 +52,7 @@
     "superagent-mock": "^3.0.0",
     "webpack": "^1.14.0"
   },
-  "dependencies": {
+  "peerDependencies": {
     "rxjs": ">= 5.0.1",
     "superagent": ">= 3.3.0"
   }
