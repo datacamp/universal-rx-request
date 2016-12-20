@@ -7,7 +7,7 @@ import 'rxjs/add/operator/concat';
 const isArray = obj => obj instanceof Array;
 
 export default ({ url, method = 'get', options = {}, query = {}, data = {} }) => {
-  const agent = options.agent ? superagent.agent() : superagent;
+  const agent = options.agent || superagent;
   return Observable.create((subscriber) => {
     let request = agent[method](url).type(options.type || 'json').query(query).send(data);
 
