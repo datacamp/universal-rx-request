@@ -1,5 +1,6 @@
 # universal-rx-request 
 [![codecov](https://codecov.io/gh/datacamp/universal-rx-request/branch/master/graph/badge.svg)](https://codecov.io/gh/datacamp/universal-rx-request)
+[![npm](https://img.shields.io/npm/l/universal-rx-request.svg)]()
 
 Lightweight HTTP requests library based on [superagent](https://github.com/visionmedia/superagent) that returns a [RxJS 5](https://github.com/ReactiveX/rxjs) observable. This library works on browser and server side. 
 
