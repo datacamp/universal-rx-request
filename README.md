@@ -44,6 +44,12 @@ rxRequest({ method: 'get', url: 'https://api.ipify.org?format=json' })
   .subscribe(console.log, console.error);
 // print the emitted items as a stream
 //  |--- { type: 'get_my_ip_fetching', requestStatus: 'fetching' } ------ { type: 'get_my_ip_success', requestStatus: 'success',  data: reponse } ----|
+
+rxRequest({ method: 'get', url: 'https://wrong-api.com/notFound' })
+  .mapToAction({ type: 'get_my_ip' })
+  .subscribe(console.log, console.error);
+// print the emitted items as a stream
+//  |--- { type: 'get_my_ip_fetching', requestStatus: 'fetching' } ------ { type: 'get_my_ip_error', requestStatus: 'error',  error: error } ----|
 ```
 Thanks to this rx extension you will be able to handle your state after each step of the HTTP request.
 
@@ -64,9 +70,11 @@ rxRequest({ method: 'get', url: 'https://api.ipify.org?format=json' })
 ```
 
 Once you map the request to an action with `maptoAction`, We recommand you to use the extended operators to deal with succeed or failure request. these are the extended operators which may be useful:
-- `throwErrorOnFailedRequest`: 
-- `mergeMapOnSucceedRequest`: 
-- `flatMapOnSucceedRequest`:
-- `concatMapOnSucceedRequest`:
-- `doOnSucceedRequest`:
-- `filterOnSucceedRequest`
+- `throwErrorOnFailedRequest()`: It will throw an error if the result of the http request is an error. To handle the error, you will have to catch it in the observable flow.
+- `mergeMapOnSucceedRequest((result) => {...})`: It acts like a classic `mergeMap` in the Rx world except that it will mergeMap only on succeed request (not fetching or error status). The function given as argument has to return an observable.
+- `flatMapOnSucceedRequest((result) => {...})`: It's an alias for `mergeMapOnSucceedRequest`.
+- `concatMapOnSucceedRequest((result) => {...})`: It's like `mergeMapOnSucceedRequest` except that it use the `concatMap` operator.
+- `doOnSucceedRequest((result) => {...})`: It's like `mergeMapOnSucceedRequest` except that it use the `do` operator to do side effects.
+- `filterOnSucceedRequest()`: It's like `mergeMapOnSucceedRequest` except that it use the `fitler` operator.
+
+I invite you to check out the test folder which contains great example of how to use these operators correctly.
