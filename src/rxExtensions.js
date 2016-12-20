@@ -3,8 +3,12 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
+import 'rxjs/add/operator/concatMap';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/concat';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
 
 const isSuccess = action => action && action.requestStatus === STATUS.SUCCESS;
 const isError = action => action && action.requestStatus === STATUS.ERROR;
@@ -22,7 +26,7 @@ export default () => {
     return Observable.of({ type: getStatus(action.type, STATUS.FETCHING), requestStatus: STATUS.FETCHING })
       .concat(
         this.map(data => ({ type: getStatus(action.type, STATUS.SUCCESS), requestStatus: STATUS.SUCCESS, data }))
-          .catch(error => Observable.of({ type: getStatus(action.type, STATUS.ERROR), requestStatus: STATUS.ERROR, error })));
+          .catch(error => Observable.of({ type: getStatus(action.type, STATUS.ERROR), requestStatus: STATUS.ERROR, ...error })));
   };
 
   Observable.prototype.throwErrorOnFailedRequest = function () {
