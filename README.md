@@ -1,3 +1,4 @@
-# universal-rx-request [![codecov](https://codecov.io/gh/datacamp/rd-to-json-parser/branch/master/graph/badge.svg)](https://codecov.io/gh/datacamp/rd-to-json-parser)
+# universal-rx-request 
+[![codecov](https://codecov.io/gh/datacamp/universal-rx-request/branch/master/graph/badge.svg)](https://codecov.io/gh/datacamp/universal-rx-request)
 
 Library to do HTTP requests with RxJS
