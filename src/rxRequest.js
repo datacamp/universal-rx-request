@@ -9,8 +9,9 @@ const isArray = obj => obj instanceof Array;
 export default ({ url, method = 'get', options = {}, query = {}, data = {} }) => {
   const agent = options.agent || superagent;
   return Observable.create((subscriber) => {
-    let request = agent[method](url).type(options.type || 'json').query(query).send(data);
+    let request = agent[method](url).query(query).send(data);
 
+    if (options.type) request = request.type(options.type);
     if (options.json) request = request.serialize();
     if (options.headers) request = request.set(options.headers);
     if (options.withCredentials) request = request.withCredentials();
