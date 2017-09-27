@@ -21,7 +21,7 @@ The library exposed a global variable called `rxRequest`. It also works with AMD
 
 ## Basic Example
 
-The library exposes a function which makes directly the HTTP request depending of the configuration you give. The request will return an observable.
+The library exposes a function which directly makes an HTTP request, depending on the configuration given. The request returns an observable.
 ```js
 import rxRequest from 'universal-rx-request';
 
@@ -36,7 +36,7 @@ rxRequest({ method: 'get', url: 'https://wrong-api.com/notFound' })
 
 ## Works great with redux and redux-observable
 
-You can import rx extensions which allow you to have more controls on the different steps that the request will going through (fetching => success|error). 
+Importing rx extensions allows more control of the different steps that the request will go through (fetching => success|error). 
 ```js
 import rxRequest from 'universal-rx-request';
 
@@ -54,7 +54,7 @@ rxRequest({ method: 'get', url: 'https://wrong-api.com/notFound' })
 // print the emitted items as a stream
 //  |--- { type: 'get_my_ip_fetching', requestStatus: 'fetching' } ------ { type: 'get_my_ip_error', requestStatus: 'error',  error: error } ----|
 ```
-Thanks to this rx extension you will be able to handle your state after each step of the HTTP request.
+Thanks to this rx extension the state can be handled after each step of the HTTP request.
 
 The rx extensions provide some other useful operators:
 ```js
@@ -72,20 +72,20 @@ rxRequest({ method: 'get', url: 'https://api.ipify.org?format=json' })
 //  |--- { type: 'get_my_ip_fetching', requestStatus: 'fetching' } ------ { ip: 'xxx.xxx.xxx.x' } ----|
 ```
 
-Once you map the request to an action with `maptoAction`, We recommand you to use the extended operators to deal with succeed or failure request. these are the extended operators which may be useful:
-- `throwErrorOnFailedRequest()`: It will throw an error if the result of the http request is an error. To handle the error, you will have to catch it in the observable flow.
-- `mergeMapOnSucceedRequest((result) => {...})`: It acts like a classic [mergeMap](http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#instance-method-mergeMap) in the Rx world except that it will mergeMap only on succeed request (not fetching or error status). The function given as argument has to return an observable.
-- `flatMapOnSucceedRequest((result) => {...})`: It's an alias for `mergeMapOnSucceedRequest`.
-- `concatMapOnSucceedRequest((result) => {...})`: It's like `mergeMapOnSucceedRequest` except that it use the [concatMap](http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#instance-method-concatMap) operator.
-- `doOnSucceedRequest((result) => {...})`: It's like `mergeMapOnSucceedRequest` except that it use the [do](http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#instance-method-do) operator to do side effects.
-- `filterOnSucceedRequest()`: It's like `mergeMapOnSucceedRequest` except that it use the [filter](http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#instance-method-filter) operator.
+After mapping the request to an action with `maptoAction`, We recommend the use of the extended operators to deal with succeed or failure responses. These are the extended operators which may be useful:
+- `throwErrorOnFailedRequest()`: Throws an error if the result of the http request is an error. To handle the error, you will have to catch it in the observable flow.
+- `mergeMapOnSucceedRequest((result) => {...})`: Acts like a classic [mergeMap](http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#instance-method-mergeMap) in the Rx world except that it will mergeMap only on succeed request (not fetching or error status). The function given as argument has to return an observable.
+- `flatMapOnSucceedRequest((result) => {...})`: An alias for `mergeMapOnSucceedRequest`.
+- `concatMapOnSucceedRequest((result) => {...})`: Like `mergeMapOnSucceedRequest` except that it uses the [concatMap](http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#instance-method-concatMap) operator.
+- `doOnSucceedRequest((result) => {...})`: Like `mergeMapOnSucceedRequest` except that it uses the [do](http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#instance-method-do) operator for side effects.
+- `filterOnSucceedRequest()`: Like `mergeMapOnSucceedRequest` except that it uses the [filter](http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#instance-method-filter) operator.
 
-I invite you to check out the test folder which contains great example of how to use these operators correctly.
+Please check out the test folder for a great example of how to use these operators correctly.
 
 ## APIs
 
 ### rxRequest(settings)
-Function that will make the HTTP request and returns an observable. Shape of the settings (only url and method fields are required):
+Function that makes the HTTP request and returns an observable. Shape of the settings (only url and method fields are required):
 ```js
  {
   url: 'https://...',
@@ -110,10 +110,10 @@ Function that will make the HTTP request and returns an observable. Shape of the
   }
  }
 ```
-The function will return an observable which will emit an object corresponding to the response of the HTTP request. If an error occurs, the observable will emit an error which can be catch in the observable flow. The error emitted will be an object containing the `error` and `response` field. For more details about the shapes of the error and response object, please check the superagent library.
+The function returns an observable which emits an object corresponding to the response of the HTTP request. If an error occurs, the observable emits an error which can be caught in the observable flow. The error emitted is an object containing the `error` and `response` field. For more details about the shapes of the error and response objects, please check the superagent library.
 
 ### rxRequest.STATUS
-It's an object containg all the different possible state of the HTTP request:
+An object containg all the different possible states of the HTTP request:
 ```js
 {
   FETCHING: 'fetching',
@@ -123,7 +123,7 @@ It's an object containg all the different possible state of the HTTP request:
 ```
 
 ### rxRequest.getStatus(action, status)
-Facility to get the type of the emitted action depending of the action object (`{ type: ... }`) and the status (rxRequest.STATUS).
+Facility to get the type of the emitted action depending on the action object (`{ type: ... }`) and the status (rxRequest.STATUS).
 
 ### rxRequest.importRxExtensions()
 Function to extend the observable with new operators described above.
